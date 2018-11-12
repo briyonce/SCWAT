@@ -96,6 +96,10 @@ function processData(allText) {
   loadHighmaps();
 }
 
+function dummyFunc(state) {
+  alert("dummy func called for state " + state);
+}
+
 // Passes the data into highmaps
 function loadHighmaps() {
   console.log(data);
@@ -136,6 +140,7 @@ function loadHighmaps() {
                                 text: text
                             });
                         }
+                        dummyFunc(e.point.name);
                     }
                 }
             }
