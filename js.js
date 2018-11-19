@@ -113,19 +113,8 @@ function loadHighmaps() {
           text: ''
       },
 
-      mapNavigation: {
-          enabled: true,
-          buttonOptions: {
-              verticalAlign: 'bottom'
-          }
-      },
-
-      colorAxis: {
-          min: 0
-      },
-
       plotOptions: {
-        map: {
+        series: {
           events: {
             click: function (e) {
                         var text = '<b>Clicked</b><br>State: ' + e.point.name + '<br>Running Jobs:' + e.point.value;
@@ -146,27 +135,21 @@ function loadHighmaps() {
             }
         },
 
-      series: [{
-          data: data,
-          name: 'Running jobs',
-          states: {
-              hover: {
-                  color: '#ff0033'
-              }
-          },
-          dataLabels: {
-              enabled: true,
-              format: '{point.name}'
-          }
+      series: [ {
+        states: {
+        }
       },
-
       {
-          name: 'Separators',
-          type: 'mapline',
-          data: Highcharts.geojson(Highcharts.maps['countries/us/us-all'], 'mapline'),
-          color: 'silver',
-          showInLegend: false,
-          enableMouseTracking: true
+        name: 'Running jobs',
+        type: 'mapbubble',
+        color: '#76c6f7',
+        minSize: 0,
+        maxSize: '20%',
+        data: data,
+        joinBy: null,
+        tooltip: {
+          pointFormat: '{point.properties.hc-a2}: {point.z} running jobs'
+        }
       }]
   });
 }
